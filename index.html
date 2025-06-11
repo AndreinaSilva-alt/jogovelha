@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Jogo da velha</title>
+<title>Jogo da Velha Trevoso</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
 
   :root {
-    --color-bg: #e7bedc;
-    --color-text: #38023f;
-    --color-gray: #200459;
-    --color-primary: #46043b;
-    --color-board-bg: #17d86b;
-    --color-cell-bg: #3988f0;
-    --color-cell-hover: #d64c66;
-    --color-cell-active: #4b9a02;
-    --color-shadow: rgba(0,0,0,0.08);
+    --color-bg: #0d0d0d;
+    --color-text: #e5e5e5;
+    --color-gray: #666;
+    --color-primary: #7c0a59;
+    --color-board-bg: #1a1a1a;
+    --color-cell-bg: #2b002b;
+    --color-cell-hover: #590459;
+    --color-cell-active: #a31489;
+    --color-shadow: rgba(255, 0, 255, 0.1);
     --border-radius: 0.75rem;
-    --font-family: 'Poppins', sans-serif;
+    --font-family: 'Cinzel', serif;
   }
 
   * {
@@ -48,6 +48,7 @@
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--color-primary);
+    text-shadow: 0 0 5px rgba(124, 10, 89, 0.6);
   }
 
   .board {
@@ -73,9 +74,7 @@
     aspect-ratio: 1 / 1;
     cursor: pointer;
     user-select: none;
-    transition:
-      background-color 0.3s ease,
-      transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
 
   .cell:hover {
@@ -99,13 +98,11 @@
     border-radius: var(--border-radius);
     cursor: pointer;
     box-shadow: 0 4px 8px var(--color-shadow);
-    transition:
-      background-color 0.3s ease,
-      transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
 
   button#resultBtn:hover {
-    background-color: #374151;
+    background-color: #3d003d;
     transform: scale(1.05);
   }
 
@@ -119,7 +116,7 @@
 </head>
 <body>
 <main>
-  <h2>Jogo da Velha Trevoso </h2>
+  <h2>Jogo da Velha Trevoso</h2>
   <div class="board" role="grid" aria-label="Tabuleiro do jogo da velha">
     <button class="cell" role="gridcell" aria-label="Empty cell" data-index="0" tabindex="0"></button>
     <button class="cell" role="gridcell" aria-label="Empty cell" data-index="1" tabindex="0"></button>
@@ -146,9 +143,9 @@
     let gameActive = true;
 
     const winningCombinations = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], // linhas
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], // colunas
-      [0, 4, 8], [2, 4, 6]             // diagonais
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
     ];
 
     function checkWinner() {
@@ -194,13 +191,7 @@
       e.target.disabled = true;
 
       const winner = checkWinner();
-      if (winner) {
-        updateStatus();
-        disableBoard();
-        return;
-      }
-
-      if (isDraw()) {
+      if (winner || isDraw()) {
         updateStatus();
         disableBoard();
         return;
@@ -229,7 +220,6 @@
       }
     });
 
-    // Mensagem inicial
     updateStatus();
   })();
 </script>
